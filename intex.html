@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>शुभ रात्रि संदेश</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #0c1445; /* गहरा नीला रात्रि जैसा रंग */
+            color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            box-sizing: border-box;
+            text-align: center;
+        }
+        .container {
+            background-color: #1a237e; /* थोड़ा हल्का नीला */
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+            max-width: 500px;
+            width: 90%;
+        }
+        h1 {
+            color: #ffeb3b; /* पीला */
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        .poem {
+            font-size: 1.1em;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            color: #e0e0e0;
+            white-space: pre-line; /* Preserve line breaks */
+        }
+        .sender-greeting {
+            font-size: 1.2em;
+            color: #81d4fa; /* हल्का नीला */
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        .input-group {
+            margin-top: 25px;
+            margin-bottom: 20px;
+        }
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 1em;
+            color: #bbdefb;
+        }
+        .input-group input[type="text"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #5c6bc0;
+            background-color: #283593;
+            color: #f0f0f0;
+            font-size: 1em;
+        }
+        .button {
+            background-color: #ffca28; /* सुनहरा पीला */
+            color: #0c1445;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+            margin-top: 10px;
+            display: inline-flex; /* For icon and text alignment */
+            align-items: center; /* For icon and text alignment */
+            gap: 8px; /* Space between icon and text */
+        }
+        .button:hover {
+            background-color: #ffb300; /* गहरा सुनहरा पीला */
+        }
+        .share-section {
+            margin-top: 20px;
+            background-color: #283593;
+            padding: 15px;
+            border-radius: 8px;
+        }
+        .share-section p {
+            margin-top: 0;
+            color: #bbdefb;
+        }
+        .share-section input[type="text"] {
+            width: calc(100% - 22px);
+            padding: 8px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            border: 1px solid #5c6bc0;
+            background-color: #1a237e;
+            color: #f0f0f0;
+        }
+        .whatsapp-logo {
+            width: 20px;
+            height: 20px;
+            vertical-align: middle;
+        }
+        .footer {
+            margin-top: 30px;
+            font-size: 0.9em;
+            color: #757575;
+        }
+        a.footer-link {
+            color: #90caf9;
+            text-decoration: none;
+        }
+        a.footer-link:hover {
+            text-decoration: underline;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>GOOD NIGHT 🌙</h1>
+
+        <div class="poem" id="poemContent">रात की चांदनी से नूर मिले आपको,
+ठंडी हवाओं से सुकून मिले आपको,
+जो भी चाहें दिल से आप,
+वो हर दुआ में मंज़ूर हो आपको।
+शुभ रात्रि।</div>
+
+        <div id="senderInfo" class="sender-greeting" style="display:none;">
+            <!-- Sender's name will be shown here -->
+        </div>
+
+        <div class="input-group">
+            <label for="nameInput">आपका नाम:</label>
+            <input type="text" id="nameInput" placeholder="यहां अपना नाम लिखें">
+            <button class="button" onclick="generateAndShowLink()">
+                लिंक बनाएं और शेयर करें
+            </button>
+        </div>
+
+        <div id="shareSection" style="display:none;" class="share-section">
+            <p>यह लिंक शेयर करें:</p>
+            <input type="text" id="generatedLink" readonly>
+            <button class="button" onclick="copyLink()">लिंक कॉपी करें</button>
+            <button class="button" id="whatsappShareButton" onclick="shareOnWhatsApp()">
+                <img src="data:image/svg+xml;base64,PHN2ZyBhcmlhLWhpZGRlbj0idHJ1ZSIgZm9jdXNhYmxlPSJmYWxzZSIgZGF0YS1wcmVmaXg9ImZhYiIgZGF0YS1pY29uPSJ3aGF0c2FwcCIgY2xhc3M9InN2Zy1pbmxpbmUtLWZhIGZhLXdoYXRzYXBwIGZhLXctMTQiIHJvbGU9ImltZyIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2aWV3Qm94PSIwIDAgNDQ4IDUxMiIgc3R5bGU9ImZpbGw6Z3JlZW47Ij48cGF0aCBkPSJNNDA1LjI1IDEyMS41QzM2Mi4yNSAxMjEuNSAyOTUuNSAxMjEuNSAyMTguNSAxMjEuNUMxNDEuNSAxMjEuNSA3NC43NSAxMjEuNSA0MS43NSAxMjEuNUMxNS4yNSAxMjEuNS0xLjI1IDE0MS41LTEuMjUgMTY3LjVWNDY2LjVDLTEuMjUgNDkyIDUuNzUgNTEyIDIxLjI1IDUxMkg0MjYuNzVDNDQyLjI1IDUxMiA0NDkuMjUgNDkyIDQ0OS4yNSA0NjYuNVYxNjcuNUM0NDkuMjUgMTQxLjUgNDMyLjc1IDEyMS41IDQwNS4yNSAxMjEuNVpNMzAxIDEzOC41QzMwNS41IDEzOC41IDMwOS41IDE0Mi41IDMwOS41IDE0Ny41VjI0My41QzMwOS41IDI0OC41IDMwNS41IDI1Mi41IDMwMSAyNTIuNUMyNzMuNSAyNTIuNSAyNTIgMjczLjUgMjUyIDI4Ny41QzI1MiAzMDEuNSAyNzMuNSAzMjAgMzAxIDMyMEMzMDIuNSAzMjAgMzA0IDMxOC41IDMwNS41IDMxN0MzMTcgMzE3IDMxOC41IDMwNC41IDMxOC41IDI5Mi41QzMxOC41IDI4My41IDMxNC41IDI3Ni41IDMwOC41IDI3Mi41QzMwMC41IDI2Ni41IDI5MC41IDI2Ni41IDI4Mi41IDI3Mi41QzI3Ni41IDI3Ni41IDI3Mi41IDI4My41IDI3Mi41IDI5Mi41QzI3Mi41IDMwMS41IDI3OS41IDMwOC41IDI4OC41IDMwOC41QzI5Ny41IDMwOC41IDMwNC41IDMwMS41IDMwNC41IDI5Mi41QzMwNC41IDI5MC41IDMwNC41IDI4OC41IDMwNC41IDI4Ni41QzMwNiAyNzguNSAzMTIuNSAyNzQuNSAzMjAgMjc0LjVDMzI3LjUgMjc0LjUgMzMzIDI3OC41IDMzMyAyODYuNUMzMzMgMjg4LjUgMzMzIDI5MC41IDMzMyAyOTIuNUMzMzMgMzEyLjUgMzA5LjUgMzM2IDI4MS41IDMzNkMyNTMuNSAzMzYgMjMwLjUgMzEyLjUgMjMwLjUgMjgyLjVDMjMwLjUgMjUyLjUgMjUzLjUgMjI4LjUgMjgxLjUgMjI4LjVDMjg0LjUgMjI4LjUgMjg3LjUgMjI5IDI5MCAyMzAuNUMyOTkgMjM3LjUgMzA0LjUgMjQ4LjUgMzA0LjUgMjYwLjVDMzA0LjUgMjY5LjUgMjk5LjUgMjc5LjUgMjkxLjUgMjg1LjVDMjgyLjUgMjkxLjUgMjcyLjUgMjkxLjUgMjY0LjUgMjg1LjVDMjU4LjUgMjgxLjUgMjU0LjUgMjc0LjUgMjU0LjUgMjY1LjVDMjU0LjUgMjU2LjUgMjU4LjUgMjQ5LjUgMjY0LjUgMjQ1LjVDMjY4LjUgMjQyLjUgMjc0IDI0MC41IDI3OS41IDI0MC41QzI4NSAyNDAuNSAyOTAgMjQyLjUgMjk0IDI0NS41QzI5OCA5Ni41IDI2Mi41IDYwLjUgMjIwLjUgNjAuNUMxNzcuNSA2MC41IDE0MS41IDk2LjUgMTQxLjUgMTM5LjVDMTQxLjUgMTY0LjUgMTUyLjUgMTg5LjUgMTcxLjUgMjA1LjVDMTk5LjUgMjA1LjUgMjI3LjUgMjA1LjUgMjU1LjUgMjA1LjVDMjg0LjUgMjA1LjUgMzEzLjUgMjA1LjUgMzQyLjUgMjA1LjVDMzcwLjUgMjA1LjUgMzk4LjUgMjA1LjUgNDI2LjUgMjA1LjVDNDM2LjUgMjA1LjUgNDQ0LjUgMTk3LjUgNDQ0LjUgMTg3LjVWMTUwLjVDNDQ0LjUgMTQwLjUgNDM2LjUgMTMyLjUgNDI2LjUgMTMyLjVIODkuNUM3OS41IDEzMi41IDcxLjUgMTQwLjUgNzEuNSAxNTAuNVY0MDAuNUM3MS41IDQxMC41IDc5LjUgNDE4LjUgODkuNSA0MTguNUgzNTguNUMzNjguNSA0MTguNSAzNzYuNSA0MTAuNSAzNzYuNSA0MDAuNVYyODBDMzc2LjUgMjc1LjUgMzc5LjUgMjcyIDM4My41IDI3MkMzODcuNSAyNzIgMzkxIDI3NS41IDM5MSAyODBWNDAwLjVDMzkxIDQyMC41IDM3NS41IDQzNi41IDM1OC41IDQzNi41SDg5LjVDNjkuNSA0MzYuNSA1My41IDQyMC41IDUzLjUgNDAwLjVWMTUwLjVDNTMuNSAxMzAuNSA2OS41IDExNC41IDg5LjUgMTE0LjVINDExQzQxMy41IDExNC41IDQxNi41IDExNy41IDQxNi41IDEyMS41QzQxNi41IDEyNC41IDQxMy41IDEyNy41IDQxMSAxMjcuNUgzNTkuNEMzMzEuNCAxMjcuNSAzMDcuNCAxNTEuNSAzMDcuNCAxNzkuNEMzMDcuNCAxODIuNCAzMDkuNCAxODQuNCAzMTIuNCAxODQuNEMzMTUuNCAxODQuNCAzMTcuNCAxODIuNCAzMTcuNCAxNzkuNEMzMTcuNCAxNTUuNCAzMzUuNCAxMzcuNCAzNTkuNCAxMzcuNEg0MTFDNDEzLjUgMTM3LjQgNDE2LjUgMTQwLjQgNDE2LjUgMTQzLjRDNDE2LjUgMTQ2LjQgNDEzLjUgMTQ5LjQgNDExIDE0OS40SDM1OS40QzMzNS40IDE0OS40IDMxNy40IDE2Ny40IDMxNy40IDE5MS40QzMxNy40IDE5NC40IDMxOS40IDE5Ni40IDMyMi40IDE5Ni40QzMyNS40IDE5Ni40IDMyNy40IDE5NC40IDMyNy40IDE5MS40QzMyNy40IDE3MS40IDM0MS40IDE1Ny40IDM1OS40IDE1Ny40SDQxMUM0MTMuNSAxNTcuNCA0MTYuNSAxNjAuNCA0MTYuNSAxNjMuNEM0MTYuNSAxNjYuNCA0MTMuNSAxNjkuNCA0MTEgMTY5LjRMMzgxIDE2OS40QzM1OS4yIDE2OS40IDMzNy40IDE5MS4yIDMzNy40IDIxOUCDMTE1LjIgMjE5IDI5My40IDE5MS4yIDI5My40IDE2OS40QzI5My40IDE0Ny42IDMxMS4yIDEyOS44IDMzMyAxMjkuOEMzMzcgMTI5LjggMzQwLjggMTMxLjIgMzQ0LjIgMTMzLjZDNDE0LjYgMTQ3LjYgNDE0LjYgMTY0LjYgNDE0LjYgMTY0LjZDNDE0LjYgMTY4LjYgNDExLjggMTcxLjQgNDA3LjggMTcxLjRIMjg3LjhDMjg2LjIgMTcxLjQgMjg0LjYgMTcwLjYgMjg0LjYgMTY5QzI4NC42IDE2Ny40IDI4Ni4yIDE2Ni42IDI4Ny44IDE2Ni42SDQwNy44QzQxMy44IDE2Ni42IDQxOC42IDE2MS44IDQxOC42IDE1NS44VjE0Mi44QzQxOC42IDEzNi44IDQxMy44IDEzMiA0MDcuOCAxMzJIMzgxLjJDNDE1LjIgMTE4LjQgNDE1LjIgOTYuNiAzOTcuNCA3OC44QzM4My40IDY0LjggMzU5LjYgNTQgMzM1IDU0QzI4OS42IDU0IDI1MS4yIDkyIDI1MS4yIDEzOEMyNTEuMiAxODEuMiAyODUuMiAyMDkuMiAzMzEuMiAyMDkuMkMzNjMuNiAyMDkuMiAzOTMuMiAxOTIuOCDQMTQuNCAxNjguOEM0MjMuNiAxNDkuMiA0MjUuNiAxMjcuNiA0MjUuNiAxMDZDNDI1LjYgNzcuMiA0MDcuNiA1NCAzODEuNiA1NEgzNTMuNkMzNTMuNiA1NCAzNTMuNiA1NCAzNTMuNiA1NEMzNDQuNCA1NCAzMzUuNiA1Ni44IDMyNy42IDYxLjZDMzE0IDcxLjYgMzA0LjggODQuNCAzMDEuMiA5OC44QzI5Ny42IDExMy4yIDI5NiAxMjguNCAyOTYgMTQ0QzI5NiAxOTIgMzMxLjIgMjQ0IDM4MS4yIDI0NEM0MzEuMiAyNDQgNDY0IDE5NiA0NjQgMTQ0QzQ2NCAxMDYgNDQ2LjQgNzIgNDEzLjIgNTBDNDA1LjYgNDMuNiAzOTYuNCA0MCAzODUuNiA0MFpNNjIgMTYyLjVDNjIgMTU0LjUgNjguNSAxNDggNzYuNSAxNDhINDMyLjVDNDQwLjUgMTQ4IDQ0NyAxNTQuNSA0NDcgMTYyLjVWNDQ3LjVDNDQ3IDQ1NS41IDQ0MC41IDQ2MiA0MzIuNSA0NjJIMTc4QzE3OCA0NjIgMTc4IDQ2MiAxNzggNDYyQzE2OCA0NjIgMTYwIDQ1NCAxNjAgNDQ0VjMyNEMxNjAgMzE0IDE2OCAzMDYgMTc4IDMwNkgyNjBDMjcwIDMwNiAyNzggMzE0IDI3OCAzMjRWNDE0QzI3OCA0MjQgMjcwIDQzMiAyNjAgNDMySDE4OEMxNzggNDMyIDE3MCA0MjQgMTcwIDQxNFYxNzBDMTcwIDE2NiAxNzIgMTYyIDE3NiAxNjJDMjM2IDE2MiAyMzYIDE2MiAyMzYgMTYyQzI0NiAxNjIgMjU0IDE3MCAyNTQgMTgwVjI3NkMyNTQgMjg2IDI0NiAyOTQgMjM2IDI5NEgxNzZDMTcyIDI5NCAxNjggMjk4IDE2OCAzMDJDMjA4IDM2MiAyNzggNDA4IDM0OCA0MDhDNDE4IDQwOCA0ODggMzYyIDQ4OCA0MDhWMzY2QzQ4OCAzNTYgNDgwIDM0OCA0NzAgMzQ4SDE0MEMxMzAgMzQ4IDEyMiAzNTYgMTIyIDM2NlY0MDhDMTIyIDQxOCAxMTQgNDI2IDEwNCA0MjZINzZDNjguNSA0MjYgNjIgNDIwIDYyIDQxMi41VjE2Mi41WiIgZmlsbD0iIzI1YjcwZSI+PC9wYXRoPjwvc3ZnPg==" class="whatsapp-logo" alt="WhatsApp">
+                WhatsApp पर शेयर करें
+            </button>
+        </div>
+
+    </div>
+    <div class="footer">
+        यह एक सरल शुभकामना पेज है। <br>
+        <a href="https://github.com" target="_blank" class="footer-link">GitHub</a> पर होस्ट किया जा सकता है।
+    </div>
+
+    <script>
+        const poemText = document.getElementById('poemContent').innerText;
+
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const senderName = urlParams.get('sender');
+
+            if (senderName) {
+                const senderInfoDiv = document.getElementById('senderInfo');
+                senderInfoDiv.innerHTML = `प्रेषक: <strong>${decodeURIComponent(senderName)}</strong>`;
+                senderInfoDiv.style.display = 'block';
+            }
+        };
+
+        function generateAndShowLink() {
+            const nameInput = document.getElementById('nameInput');
+            const yourName = nameInput.value.trim();
+
+            if (yourName === "") {
+                alert("कृपया अपना नाम लिखें।");
+                return;
+            }
+
+            // वर्तमान URL का आधार प्राप्त करें (बिना किसी मौजूदा पैरामीटर के)
+            const baseUrl = window.location.origin + window.location.pathname;
+            const generatedLink = `${baseUrl}?sender=${encodeURIComponent(yourName)}`;
+
+            const generatedLinkInput = document.getElementById('generatedLink');
+            generatedLinkInput.value = generatedLink;
+
+            const shareSection = document.getElementById('shareSection');
+            shareSection.style.display = 'block';
+        }
+
+        function copyLink() {
+            const generatedLinkInput = document.getElementById('generatedLink');
+            generatedLinkInput.select();
+            generatedLinkInput.setSelectionRange(0, 99999); // For mobile devices
+
+            try {
+                navigator.clipboard.writeText(generatedLinkInput.value).then(function() {
+                    alert("लिंक कॉपी हो गया!");
+                }, function(err) {
+                    // Fallback for older browsers
+                    document.execCommand('copy');
+                    alert("लिंक कॉपी हो गया! (Fallback)");
+                });
+            } catch (err) {
+                 // Fallback for very old browsers or specific environments
+                try {
+                    document.execCommand('copy');
+                    alert("लिंक कॉपी हो गया! (Fallback 2)");
+                } catch (e) {
+                    alert("लिंक कॉपी करने में असमर्थ। कृपया इसे मैन्युअल रूप से कॉपी करें।");
+                }
+            }
+        }
+
+        function shareOnWhatsApp() {
+            const generatedLinkInput = document.getElementById('generatedLink');
+            const linkToShare = generatedLinkInput.value;
+            const nameInput = document.getElementById('nameInput').value.trim(); // The current user's name
+
+            if (linkToShare === "") {
+                alert("पहले लिंक बनाएं।");
+                return;
+            }
+            
+            let messageBody = `शुभ रात्रि! 🌙\n\n${poemText}\n\n`;
+            if (nameInput) { // If the current user has entered their name to forward
+                messageBody += `यह संदेश ${nameInput} द्वारा भेजा गया है।\n\n`;
+            }
+            messageBody += `आप भी यह शुभकामना आगे भेजें:\n${linkToShare}`;
+            
+            const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(messageBody)}`;
+            window.open(whatsappUrl, '_blank');
+        }
+    </script>
+</body>
+</html>
+<script type="text/javascript"> atOptions = { 'key' : '8f47e6e80d2890cfd3d6708b04579961', 'format' : 'iframe', 'height' : 60, 'width' : 468, 'params' : {} }; </script> <script type="text/javascript" src="//www.highperformanceformat.com/8f47e6e80d2890cfd3d6708b04579961/invoke.js"></script>
